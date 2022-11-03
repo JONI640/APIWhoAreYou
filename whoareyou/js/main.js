@@ -2,7 +2,8 @@ import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
 
 function differenceInDays(date1) {
-    // YOUR CODE HERE
+  const diff = new Date() - date1;
+  return Math.floor(diff / (1000*60*60*24));    
 }
 
 let difference_In_Days = differenceInDays(new Date("08-18-2022"));
@@ -22,8 +23,8 @@ let game = {
 };
 
 function getSolution(players, solutionArray, difference_In_Days) {
- 
-    // YOUR CODE HERE 
+  let { id } = solutionArray[(difference_In_Days - 1) % solutionArray.length]; // hago el resto para que nunca salga del rango del array
+  return players.find(player => player.id == id);
 }
 
 Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
