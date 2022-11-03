@@ -1,25 +1,40 @@
-// YOUR CODE HERE :  
-// .... stringToHTML ....
-// .... setupRows .....
+import { stringToHTML } from "./fragment.js";
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
 
+const leagueTags = {
+    564 : 'es1',
+    8 : 'en1',
+    82 : 'de1',
+    384 : 'it1',
+    301 : 'fr1',
+}
 
 let setupRows = function (game) {
 
-
     function leagueToFlag(leagueId) {
-        // YOUR CODE HERE
+        return leagueTags[leagueId]
     }
 
 
     function getAge(dateString) {
         // YOUR CODE HERE
+        return new Date().getFullYear() - new Date(dateString).getFullYear();
     }
     
     let check = function (theKey, theValue) {
-            // YOUR CODE HERE
+        // YOUR CODE HERE
+        let value = game[theKey];
+        if (theKey == 'birthdate') {
+            let realDate = new Date(value);
+            let userDate = new Date(theValue);
+            if (realDate > userDate) return 'higher';
+            else if (realDate < userDate) return 'lower';
+            else return 'correct';
+        }
+        if (value == theValue) return 'correct';
+        return 'incorrect';
     }
 
     function setContent(guess) {
@@ -56,7 +71,8 @@ let setupRows = function (game) {
     }
 
     let getPlayer = function (playerId) {
-            // YOUR CODE HERE   
+        // YOUR CODE HERE   
+        return game.players.find(player => player.id == playerId);
     }
 
     return /* addRow */ function (playerId) {
@@ -68,3 +84,5 @@ let setupRows = function (game) {
         showContent(content, guess)
     }
 }
+
+export {setupRows}
