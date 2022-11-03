@@ -77,11 +77,9 @@ const ejer54 = (player) => {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-const differenceInDays = (base) => {
-    const now = new Date();
-    const dif = now - base;
-    return Math.floor(dif / (1000*60*60*24));
-    
+const differenceInDays = (date1) => {
+    const diff = new Date() - date1;
+    return Math.floor(diff / (1000*60*60*24));    
 }
 
 const fetchJSON = async (file) => {
@@ -121,23 +119,19 @@ window.addEventListener('DOMContentLoaded', async ()=> {
     console.log("Ejercicio 5.4");
     console.log(ejer54(player0));
 
-    // const comp = await load('./competitions.json')
-    //                 .then(({ competitions }) => competitions.map(comp => new CompetitionEntity(comp)));
-    
-    // const competiciones = new CompetitionsService(comp);
-    // console.log(competiciones);
     console.log("Ejercicio 6.1")
     console.log(differenceInDays(new Date(2022,7,22)));
 
     console.log("Ejercicio 6.2")
     console.log(await fetchJSON('./competitions.json'));
 
-    const fullplayers = await fetchJSON('./fullplayers.json');
-    const solutions = await fetchJSON('./solution.json');
+    console.log("Ejercicio 6.3");
+    let fullplayers = await fetchJSON('./fullplayers.json');
+    let solutions = await fetchJSON('./solution.json');
+    console.log(getSolution(fullplayers, solutions, 16))
 });
 
 function getSolution(players, solutionArray, differenceInDays) {
-    const { id } = solutionArray[differenceInDays - 1];
-    const [player] = players.filter(player => player.id == id);
-    return player;
+    let { id } = solutionArray[differenceInDays - 1];
+    return players.find(player => player.id == id);
 }
