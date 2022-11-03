@@ -1,4 +1,4 @@
-import { stringToHTML } from "./fragments.js";
+import { higher, lower, stringToHTML } from "./fragments.js";
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
@@ -25,10 +25,10 @@ let setupRows = function (game) {
     
     let check = function (theKey, theValue) {
         // YOUR CODE HERE
-        let value = game[theKey];
+        let value = game.solution[theKey];
         if (theKey == 'birthdate') {
-            let realDate = new Date(value);
-            let userDate = new Date(theValue);
+            let realDate = getAge(value);
+            let userDate = getAge(theValue);
             if (realDate > userDate) return 'higher';
             else if (realDate < userDate) return 'lower';
             else return 'correct';
@@ -37,13 +37,21 @@ let setupRows = function (game) {
         return 'incorrect';
     }
 
+    function showAgeInfo(guess) {
+        const guessAge = getAge(guess.birthdate);
+        const solutionAge = getAge(game.solution['birthdate']);
+        if(guessAge > solutionAge) return lower;
+        else if(guessAge < solutionAge) return higher;
+        return '';
+    }
+
     function setContent(guess) {
         return [
             `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
             `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
             `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
             `${guess.position}`,
-            `${getAge(guess.birthdate)}`
+            `${getAge(guess.birthdate)}${showAgeInfo(guess)}`
         ]
     }
 

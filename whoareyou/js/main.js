@@ -1,6 +1,7 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
-import { setupRows } from "./rows.js";
+import {autocomplete} from "./autocomplete.js"
+
 
 function differenceInDays(date1) {
   const diff = new Date() - date1;
@@ -45,15 +46,6 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
       game.solution.id % 32
     }/${game.solution.id}.png`;
     
-    let addRow = setupRows( game );
-      // when the user types a number an press the Enter key:
-        document.getElementById('myInput')
-                .addEventListener('keydown', e => {
-                  if (e.keyCode != 13) return; // keyCode = 13 ---> Enter
-                  console.log(e.target.value);
-                  // addRow(game.players.find(player => player.number == e.target.value).id);
-                  addRow(e.target.value);
-                })
-       // addRow( /* the ID of the player, where is it? */); 
+    autocomplete(document.getElementById("myInput"), game)
   }
 );
