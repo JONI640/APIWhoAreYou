@@ -1,4 +1,4 @@
-import { stringToHTML } from "./fragment.js";
+import { stringToHTML } from "./fragments.js";
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
