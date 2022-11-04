@@ -13,6 +13,8 @@ const leagueTags = {
 
 let setupRows = function (game) {
 
+    let [state, updateState] = initState('WAYgameState', game.solution.id)
+
     function leagueToFlag(leagueId) {
         return leagueTags[leagueId]
     }
@@ -78,10 +80,23 @@ let setupRows = function (game) {
         playersNode.prepend(stringToHTML(child))
     }
 
+    function resetInput(){
+        // YOUR CODE HERE
+        let aux = document.getElementById("myInput");
+        aux.value = "";
+        aux.placeholder = 'GUESS ${} OF 8';
+    }
+
     let getPlayer = function (playerId) {
         // YOUR CODE HERE   
         return game.players.find(player => player.id == playerId);
     }
+
+    function gameEnded(lastGuess){
+        // YOUR CODE HERE
+    }
+
+    resetInput();
 
     return /* addRow */ function (playerId) {
 
@@ -89,7 +104,25 @@ let setupRows = function (game) {
         console.log(guess)
 
         let content = setContent(guess)
-        showContent(content, guess)
+
+        game.guesses.push(playerId)
+        updateState(playerId)
+
+        resetInput();
+
+        if (gameEnded(playerId)) {
+            // updateStats(game.guesses.length);
+
+            if (playerId == game.solution.id) {
+                success();
+            }
+
+            if (game.guesses.length == 8) {
+                gameOver();
+            }
+        }
+
+        showContent(content, guess)   
     }
 }
 
