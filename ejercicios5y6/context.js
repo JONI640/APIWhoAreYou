@@ -32,6 +32,12 @@ const ejer34 = (competitions) => {
     return tmp;
 }
 
+const ejer35 = (competitions) => {
+    const paises = ['ESP', 'DEU', 'ENG', 'FRA', 'ITA'];
+    const tmp = competitions.filter(elem => paises.includes(elem.area.code) && elem.plan == 'TIER_ONE' && elem.name != 'Championship');
+    return tmp;
+}
+
 const ejer36 = (competitions) => {
     const filtered = ejer34(competitions);
     const tmp = filtered.map(elem => elem.id);
@@ -75,6 +81,25 @@ const ejer54 = (player) => {
     }
 }
 
+const ejer55 = (competition) => {
+    let {teams} = competition
+    let leagueID = competition.competition.id
+    //console.log(teams)
+    teams.forEach(team => {
+        let teamID = team.id
+        //console.log(teamID)
+        let {squad} = team
+        //console.log(squad)
+        squad.forEach(player => {
+            player = ejer54(player)
+            player.leagueID = leagueID
+            player.teamID = teamID
+            console.log(player)
+        })
+    })
+    //console.log(teams)
+
+}
 /////////////////////////////////////////////////////////////////////////////////////////
 
 const differenceInDays = (date1) => {
@@ -101,7 +126,10 @@ window.addEventListener('DOMContentLoaded', async ()=> {
 
     console.log("Ejercicio 3.4");
     console.log(ejer34(competitions));
-
+    
+    console.log("Ejercicio 3.5");
+    console.log(ejer35(competitions));
+    
     console.log("Ejercicio 3.6");
     console.log(ejer36(competitions));
 
@@ -118,6 +146,9 @@ window.addEventListener('DOMContentLoaded', async ()=> {
 
     console.log("Ejercicio 5.4");
     console.log(ejer54(player0));
+
+    console.log("Ejercicio 5.5");
+    console.log(ejer55(premiere));
 
     console.log("Ejercicio 6.1")
     console.log(differenceInDays(new Date(2022,7,22)));
