@@ -163,6 +163,6 @@ window.addEventListener('DOMContentLoaded', async ()=> {
 });
 
 function getSolution(players, solutionArray, differenceInDays) {
-    let { id } = solutionArray[differenceInDays - 1];
+    let { id } = solutionArray[differenceInDays % solutionArray.length -1];
     return players.find(player => player.id == id);
 }
