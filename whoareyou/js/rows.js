@@ -1,4 +1,5 @@
 import { higher, lower, stringToHTML } from "./fragments.js";
+import { initState } from "./stats.js";
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
@@ -12,6 +13,8 @@ const leagueTags = {
 }
 
 let setupRows = function (game) {
+
+    localStorage.setItem('WAYgameState',JSON.stringify({"guesses": [],"solution": 0})) // no se como hacer para el primer caso
 
     let [state, updateState] = initState('WAYgameState', game.solution.id)
 
@@ -37,6 +40,25 @@ let setupRows = function (game) {
         }
         if (value == theValue) return 'correct';
         return 'incorrect';
+    }
+
+    function unblur(outcome) {
+        return new Promise( (resolve, reject) =>  {
+            setTimeout(() => {
+                document.getElementById("mistery").classList.remove("hue-rotate-180", "blur")
+                document.getElementById("combobox").remove()
+                let color, text
+                if (outcome=='success'){
+                    color =  "bg-blue-500"
+                    text = "Awesome"
+                } else {
+                    color =  "bg-rose-500"
+                    text = "The player was " + game.solution.name
+                }
+                document.getElementById("picbox").innerHTML += `<div class="animate-pulse fixed z-20 top-14 left-1/2 transform -translate-x-1/2 max-w-sm shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden ${color} text-white"><div class="p-4"><p class="text-sm text-center font-medium">${text}</p></div></div>`
+                resolve();
+            }, "2000")
+        })
     }
 
     function showAgeInfo(guess) {
@@ -84,7 +106,7 @@ let setupRows = function (game) {
         // YOUR CODE HERE
         let aux = document.getElementById("myInput");
         aux.value = "";
-        aux.placeholder = 'GUESS ${} OF 8';
+        aux.placeholder = `GUESS ${game.guesses.length} OF 8`; //mirar a ver si esta bien
     }
 
     let getPlayer = function (playerId) {
@@ -94,6 +116,15 @@ let setupRows = function (game) {
 
     function gameEnded(lastGuess){
         // YOUR CODE HERE
+        return lastGuess == game.solution.id || game.guesses.length == 8
+    }
+
+    function success() {
+        unblur('success')
+    }
+
+    function gameOver(){
+        unblur('over') // cualquier cosa
     }
 
     resetInput();
