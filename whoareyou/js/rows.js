@@ -14,7 +14,7 @@ const leagueTags = {
 
 let setupRows = function (game) {
 
-    localStorage.removeItem('WAYgameState');
+    //localStorage.removeItem('WAYgameState');
     let [state, updateState] = initState('WAYgameState', game.solution.id)
 
     function leagueToFlag(leagueId) {
