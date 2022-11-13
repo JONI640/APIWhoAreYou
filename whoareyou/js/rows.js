@@ -1,6 +1,6 @@
 import { higher, lower, stringToHTML, stats, headless, toggle } from "./fragments.js";
 import { initState, updateStats } from "./stats.js";
-import { intervalToDuration } from "./date-fns.js";
+//import intervalToDuration from 'date-fns';
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
@@ -175,8 +175,18 @@ let setupRows = function (game) {
             const tomorrow = new Date(today)
             tomorrow.setDate(tomorrow.getDate() + 1)
             tomorrow.setHours(0,0,0,0)
-
-            let interval = intervalToDuration({start: today, end: tomorrow})
+            
+            let interval = setInterval(() => {
+                let aux = document.getElementById("nextPlayer")
+                if(aux != null)
+                {
+                    let today = new Date();
+                    let horas = 23 - today.getHours();
+                    let minutos = 59 - today.getMinutes();
+                    let segundos = 59 - today.getSeconds();
+                    aux.innerHTML = horas +":" + minutos +":" + segundos;
+                }
+            }, 1000);
         }
 
         showContent(content, guess)   

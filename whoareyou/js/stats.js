@@ -67,7 +67,7 @@ function updateStats(t){
     }
     //para los dos casos
     aux.totalGames += 1
-    aux.successRate = (aux.winDistribution.reduce((sumaParcial, a) => sumaParcial + a, 0)/aux.totalGames)*100; //el ultimo simpre sera 0, por lo tanto no afecta
+    aux.successRate = ((aux.winDistribution.reduce((sumaParcial, a) => sumaParcial + a, 0)/aux.totalGames)*100).toFixed(2); //el ultimo simpre sera 0, por lo tanto no afecta
     
     localStorage.setItem('gameStats',JSON.stringify(aux))
 };
