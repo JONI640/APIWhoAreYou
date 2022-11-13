@@ -169,12 +169,7 @@ let setupRows = function (game) {
             if (game.guesses.length == 8) {
                 gameOver();
             }
-            
-            const today = new Date()
-            const tomorrow = new Date(today)
-            tomorrow.setDate(tomorrow.getDate() + 1)
-            tomorrow.setHours(0,0,0,0)
-            
+                        
             let interval = setInterval(() => {
                 let aux = document.getElementById("nextPlayer")
                 if(aux != null)

@@ -38,7 +38,7 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
 
     game.solution = getSolution(game.players, solution, difference_In_Days);
     
-    console.log(game.solution);
+    //console.log(game.solution);
 
     document.getElementById(
       "mistery"

@@ -11,7 +11,7 @@ let initState = function(what, solutionId) {
             console.log(nuevo)
             nuevo["guesses"].push(guess)
             nuevo["solution"] = solutionId
-            localStorage.setItem(what, JSON.stringify(nuevo))
+            localStorage.setItem(what, nuevo)
         }]
     }
     // Si no esta, lo creamos y lo añadimos
