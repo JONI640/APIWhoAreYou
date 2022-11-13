@@ -1,6 +1,6 @@
 import { higher, lower, stringToHTML, stats } from "./fragments.js";
 import { initState, updateStats } from "./stats.js";
-import { intervalToDuration } from "date-fns";
+import { intervalToDuration } from "./date-fns.js";
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
