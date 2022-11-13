@@ -6,7 +6,7 @@ let initState = function(what, solutionId) {
     // Si esta, añadimos el nuevo intento y actualizamos
     let aux = localStorage.getItem(what)
     if(aux != null){      
-        return [aux, function(guess) {
+        return [aux, function (guess) {
             let nuevo = JSON.parse(aux)
             console.log(nuevo)
             nuevo["guesses"].push(guess)
@@ -19,7 +19,8 @@ let initState = function(what, solutionId) {
         return [aux, function(guess) {
             let situacion = { "guesses" : [], "solution": solutionId}
             situacion["guesses"].push(guess)
-            localStorage.setItem("WAYgameState", situacion)
+            console.log(situacion)
+            localStorage.setItem("WAYgameState", JSON.stringify(situacion))
         }]
     }
 }
