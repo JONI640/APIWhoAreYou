@@ -1,4 +1,4 @@
-import { higher, lower, stringToHTML, stats } from "./fragments.js";
+import { higher, lower, stringToHTML, stats, headless, toggle } from "./fragments.js";
 import { initState, updateStats } from "./stats.js";
 import { intervalToDuration } from "./date-fns.js";
 
@@ -21,7 +21,6 @@ let setupRows = function (game) {
     function leagueToFlag(leagueId) {
         return leagueTags[leagueId]
     }
-
 
     function getAge(dateString) {
         // YOUR CODE HERE
@@ -70,6 +69,13 @@ let setupRows = function (game) {
                 resolve();
             }, timeout)
         })
+    }
+    
+    function bindClose() {
+        document.getElementById("closedialog").onclick = function () {
+            document.body.removeChild(document.body.lastChild)
+            document.getElementById("mistery").classList.remove("hue-rotate-180", "blur")
+        }
     }
 
     function showAgeInfo(guess) {

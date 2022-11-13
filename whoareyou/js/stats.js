@@ -52,8 +52,8 @@ let getStats = function(what) {
 };
 
 function updateStats(t){
-    let aux = localStorage.getItem('gameStats')
-    
+    let aux = JSON.parse(localStorage.getItem('gameStats'))
+
     if (t >= 8) // Si no acerto, no se actuliza el array de winDistribution
     {
         aux.gamesFailed += 1
@@ -61,7 +61,6 @@ function updateStats(t){
     }
     else // Si acerto, actualiza winDistribution
     {
-        console.log(aux.winDistribution.length)
         aux.winDistribution[t] += 1 // es un array de 9 elementos ?¿
         aux.currentStreak += 1
         if (aux.currentStreak > aux.bestStreak) aux.bestStreak = aux.currentStreak
