@@ -1,5 +1,6 @@
-import { higher, lower, stringToHTML } from "./fragments.js";
-import { initState } from "./stats.js";
+import { higher, lower, stringToHTML, stats } from "./fragments.js";
+import { initState, updateStats } from "./stats.js";
+import { intervalToDuration } from "date-fns";
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
@@ -58,6 +59,17 @@ let setupRows = function (game) {
                 document.getElementById("picbox").innerHTML += `<div class="animate-pulse fixed z-20 top-14 left-1/2 transform -translate-x-1/2 max-w-sm shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden ${color} text-white"><div class="p-4"><p class="text-sm text-center font-medium">${text}</p></div></div>`
                 resolve();
             }, "2000")
+        })
+    }
+
+    function showStats(timeout) {
+        return new Promise( (resolve, reject) =>  {
+            setTimeout(() => {
+                document.body.appendChild(stringToHTML(headless(stats())));
+                document.getElementById("showHide").onclick = toggle;
+                bindClose();
+                resolve();
+            }, timeout)
         })
     }
 
@@ -121,10 +133,12 @@ let setupRows = function (game) {
 
     function success() {
         unblur('success')
+        showStats(5000)
     }
 
     function gameOver(){
         unblur('over') // cualquier cosa
+        showStats(5000)
     }
 
     resetInput();
@@ -142,7 +156,7 @@ let setupRows = function (game) {
         resetInput();
 
         if (gameEnded(playerId)) {
-            // updateStats(game.guesses.length);
+            updateStats(game.guesses.length);
 
             if (playerId == game.solution.id) {
                 success();
@@ -151,6 +165,13 @@ let setupRows = function (game) {
             if (game.guesses.length == 8) {
                 gameOver();
             }
+            
+            const today = new Date()
+            const tomorrow = new Date(today)
+            tomorrow.setDate(tomorrow.getDate() + 1)
+            tomorrow.setHours(0,0,0,0)
+
+            let interval = intervalToDuration({start: today, end: tomorrow})
         }
 
         showContent(content, guess)   
