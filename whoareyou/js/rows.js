@@ -15,7 +15,6 @@ const leagueTags = {
 
 let setupRows = function (game) {
 
-    //localStorage.setItem('WAYgameState',JSON.stringify({"guesses": [],"solution": 0})) // no se como hacer para el primer caso
     localStorage.removeItem('WAYgameState');
     let [state, updateState] = initState('WAYgameState', game.solution.id)
 

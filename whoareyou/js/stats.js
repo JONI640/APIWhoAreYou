@@ -34,11 +34,7 @@ let getStats = function(what) {
     // Vemos si el objeto que queremos esta en el localStorage
     // Si esta, lo devolvemos
     let aux = localStorage.getItem(what)
-    if(aux != null){      
-        return JSON.parse(aux)
-    }
-    // Si no esta, lo creamos y lo devolvemos
-    else{
+    if(aux == null){      
         let stats = {winDistribution: [0,0,0,0,0,0,0,0,0],
             gamesFailed: 0,
             currentStreak: 0,
@@ -48,6 +44,10 @@ let getStats = function(what) {
             }
         localStorage.setItem(what, JSON.stringify(stats))
         return stats
+    }
+    // Si no esta, lo creamos y lo devolvemos
+    else{
+        return JSON.parse(aux)
     }   
 };
 
@@ -61,6 +61,7 @@ function updateStats(t){
     }
     else // Si acerto, actualiza winDistribution
     {
+        console.log(aux.winDistribution.length)
         aux.winDistribution[t] += 1 // es un array de 9 elementos ?¿
         aux.currentStreak += 1
         if (aux.currentStreak > aux.bestStreak) aux.bestStreak = aux.currentStreak
