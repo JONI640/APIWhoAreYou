@@ -1,5 +1,6 @@
 import {setupRows} from "./rows.js";
-import { contain } from "./match.js";
+import { contain , match} from "./match.js";
+import { parse } from "./parse.js";
 export {autocomplete}
 
 function autocomplete(inp, game) {
@@ -30,17 +31,23 @@ function autocomplete(inp, game) {
         for (i = 0; i < players.length; i++) {
             /*Mira que el nombre del jugador contenga lo que este en el input*/
             if (contain(players[i].name, val)) {
-
+                // Obtener indices de donde empieza y termina a coincidir el input en el nombre
+                let matches = match(players[i].name, val)
+                //console.log(matches)
+                // Obtener el nombre separado en 3 partes (antes de coincidir, texto que coincide, despues de coincidir)
+                let parts = parse(players[i].name, matches)
+                // Guardar el texto en negrita del texto que coincide
+                const result = parts.map(
+                    part => (part.highlight ? `<b>${part.text}</b>` : part.text)
+                )
+                //console.log(parts)
                 b = document.createElement("DIV");
                 b.classList.add('flex', 'items-start', 'gap-x-3', 'leading-tight', 'uppercase', 'text-sm');
                 b.innerHTML = `<img src="https://cdn.sportmonks.com/images/soccer/teams/${players[i].teamId % 32}/${players[i].teamId}.png"  width="28" height="28">`;
 
                 /*make the matching letters bold:*/
-                // Buscamos en que posicion empieza y termina en coincidir
-                let inicio = players[i].name.toLowerCase().search(val.toLowerCase())
-                let fin = inicio + val.length
-                b.innerHTML += `<div class='self-center'>
-                                    <span class>${players[i].name.substring(0,inicio)}</span><span class='font-bold'>${val}</span><span class>${players[i].name.substring(fin)}</span> 
+                b.innerHTML += `<div class='self-center'> 
+                                    <span class>${result.join('')}</span>
                                     <input type='hidden' name='name' value='${players[i].name}'>
                                     <input type='hidden' name='id' value='${players[i].id}'>
                                 </div>`;
