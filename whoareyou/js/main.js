@@ -42,7 +42,7 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
     if(localStorage.getItem('WAYgameState') != null)
     {  
       let local = JSON.parse(localStorage.getItem('WAYgameState'))
-      if(local.solution != game.solution.id)
+      if(local.solution != game.solution.id || local.guesses.length >= 8)
       {
         localStorage.removeItem('WAYgameState')
       }
@@ -52,7 +52,7 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
       }
     }
 
-    console.log(game.solution);
+   // console.log(game.solution);
 
     document.getElementById(
       "mistery"

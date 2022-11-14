@@ -1,4 +1,3 @@
-import { stats } from './fragments.js'
 export {updateStats, getStats, initState}
 
 let initState = function(what, solutionId) { 
