@@ -132,17 +132,17 @@ let setupRows = function (game) {
 
     function gameEnded(lastGuess){
         // YOUR CODE HERE
-        return lastGuess == game.solution.id || game.guesses.length == 8
+        return lastGuess == game.solution.id || game.guesses.length >= 8
     }
 
     function success() {
         unblur('success')
-        showStats(5000)
+        showStats(1000)
     }
 
     function gameOver(){
         unblur('over') // cualquier cosa
-        showStats(5000)
+        showStats(1000)
     }
 
     resetInput();
@@ -166,7 +166,7 @@ let setupRows = function (game) {
                 success();
             }
 
-            if (game.guesses.length == 8) {
+            if (game.guesses.length >= 8) {
                 gameOver();
             }
                         

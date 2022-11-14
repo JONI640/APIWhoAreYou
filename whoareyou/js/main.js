@@ -38,7 +38,21 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
 
     game.solution = getSolution(game.players, solution, difference_In_Days);
     
-    //console.log(game.solution);
+    // Milestone7
+    if(localStorage.getItem('WAYgameState') != null)
+    {  
+      let local = JSON.parse(localStorage.getItem('WAYgameState'))
+      if(local.solution != game.solution.id)
+      {
+        localStorage.removeItem('WAYgameState')
+      }
+      else
+      {
+        game.guesses = local.guesses
+      }
+    }
+
+    console.log(game.solution);
 
     document.getElementById(
       "mistery"

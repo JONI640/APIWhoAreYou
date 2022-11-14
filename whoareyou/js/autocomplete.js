@@ -6,7 +6,6 @@ export {autocomplete}
 function autocomplete(inp, game) {
 
     let addRow = setupRows(game);
-
     let players = game.players;
 
     /*the autocomplete function takes two arguments,
