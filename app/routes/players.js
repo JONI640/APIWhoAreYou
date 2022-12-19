@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const { check, body , validationResult } = require('express-validator');
 
 //const { body, validationResult } = require('express-validator');
 
@@ -13,9 +14,17 @@ router.get('/add', (req, res) => {
   res.render('add')
 })
 
-router.post('/add', function(req,res){
-  console.log(req.body)
-  res.render('add')
+router.post('/add',
+    [check('name').not().isEmpty().withMessage('Se requiere un nombre')],
+    function(req,res){
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+      }
+      else {
+        console.log(req.body)
+        res.render('add')
+      }
 })
 
 module.exports = router;
