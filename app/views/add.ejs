@@ -5,16 +5,21 @@
   </head>
   <body>
     <div id="main">
-
         <form action="/api/players/add" method="post">
+                <label for="id">Id</label>
+                <input type="text" id="id" name="id">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name">
-                <!-- <label for="name">Qty</label>
-                <input type="text" id="qty" name="qty">
-                <label for="name">Status</label>
-                <input type="text" id="status" name="status"> -->
-                <!-- <label for="name">Size</label>
-                <input type="text" id="size" name="size" size="30"> -->
+                <label for="name">Birthdate</label>
+                <input type="text" id="birth" name="birth">
+                <label for="name">Nationality</label>
+                <input type="text" id="nation" name="nation">
+                <label for="name">Team Id</label>
+                <input type="text" id="team" name="team">
+                <label for="name">Position</label>
+                <input type="text" id="position" name="position">
+                <label for="name">Number</label>
+                <input type="text" id="number" name="number">
                 <input type="submit" class="form-submit" value="Add">
         </form>
     </div>

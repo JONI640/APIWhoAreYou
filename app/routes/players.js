@@ -19,7 +19,9 @@ router.post('/add',
     function(req,res){
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(422).json({ errors: errors.array() });
+        res.locals.message = "Se han cometido errores" //err.message;
+        res.locals.error = req.app.get('env') === 'development' ? 400 : {};
+        res.render('add_error', { title: 'Error' })
       }
       else {
         console.log(req.body)
