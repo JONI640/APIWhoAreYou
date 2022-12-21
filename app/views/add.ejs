@@ -1,27 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
   </head>
   <body>
+    <div id="error">Por favor, rellena todos los campos del formulario</div>
     <div id="main">
+<!--        onsubmit="return validateForm()"-->
         <form action="/api/players/add" method="post">
                 <label for="id">Id</label>
-                <input type="text" id="id" name="id">
+                <input type="text" id="id" name="id"> <br>
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name">
+                <input type="text" id="name" name="name"> <br>
                 <label for="name">Birthdate</label>
-                <input type="text" id="birth" name="birth">
+                <input type="text" id="birth" name="birth"> <br>
                 <label for="name">Nationality</label>
-                <input type="text" id="nation" name="nation">
+                <input type="text" id="nation" name="nation"> <br>
                 <label for="name">Team Id</label>
-                <input type="text" id="team" name="team">
+                <input type="text" id="team" name="team"> <br>
                 <label for="name">Position</label>
-                <input type="text" id="position" name="position">
+                <input type="text" id="position" name="position"> <br>
                 <label for="name">Number</label>
-                <input type="text" id="number" name="number">
+                <input type="text" id="number" name="number"> <br>
                 <input type="submit" class="form-submit" value="Add">
         </form>
     </div>
+    <script>
+        function validateForm() {
+            // Obtener todos los campos del formulario
+            var inputs = document.querySelectorAll("form input");
+
+            // Iterar sobre cada campo
+            for (var i = 0; i < inputs.length; i++) {
+                // Verificar si el campo está vacío
+                if (!inputs[i].value) {
+                    // Mostrar mensaje de error
+                    document.querySelector("#error").style.display = "block";
+
+                    // Prevenir el envío del formulario
+                    return false;
+                }
+            }
+            // Si todos los campos están completos, permitir el envío del formulario
+            return true;
+        }
+    </script>
   </body>
 </html>
