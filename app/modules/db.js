@@ -1,6 +1,6 @@
 const mongojs = require('mongojs');
 
-const database = 'sw_db';
+const database = 'footballdata';
 const collection = 'players';
 
 const db = mongojs(`mongodb://127.0.0.1:27017/${database}`, [collection]);

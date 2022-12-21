@@ -1,0 +1,118 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 40%;
+    margin-top: 3rem;
+}
+
+.title {
+    font-size: 1.2rem;
+}
+.search {
+    display: flex;
+    flex-direction: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search > div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    gap: .5rem;
+}
+
+#buscarBtn {
+    flex-grow: 1;
+    align-self: flex-end;
+
+    background-color: rgb(76, 76, 255);
+    color: white;
+    border: 2px solid rgb(76, 76, 255);
+    padding: .2rem 1rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .2s ;
+}
+#buscarBtn:hover {
+    background-color: rgb(48, 48, 166);
+    color: white;
+}
+
+input[type="text"] {
+    padding: .2rem .5rem ;
+}
+
+#addNewPlayerBtn {
+    width: 100%;
+    padding: .5rem 1rem;
+    background-color: rgb(80, 207, 80);
+    border: none;
+    border-radius: 2px;
+    margin-top: 2rem;
+    cursor: pointer;
+
+    transition: all .1s;
+}
+#addNewPlayerBtn:hover {
+    background-color: rgb(42, 190, 42);
+    /* color: white; */
+}
+
+#result {
+    margin-top: 1rem;
+    border-top: 1px solid black;
+}
+
+.playerRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid black;
+}
+
+.btnContainer {
+    display: flex;
+    gap: 1rem;
+}
+
+.editBtn {
+    text-decoration: none;
+    padding: .2rem .5rem;
+    color: black;
+    border: 2px solid orange;
+    background-color: orange;
+    border-radius: 2px;
+}
+
+.removeBtn {
+    padding: .2rem .5rem;
+    color: black;
+    border: 2px solid tomato;
+    background-color: tomato;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.fs-13{
+    font-size: 1.3rem;
+}
+
+#error {
+    color: tomato;
+    padding-top: .5rem;
+}

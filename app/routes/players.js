@@ -7,7 +7,7 @@ const DB = require('../modules/db');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('players/Home');
 });
 
 // Ejercicio 2.4
@@ -43,13 +43,22 @@ router.post('/add',
 
 router.get('/:id', async (req, res) => {
   const aux = await DB.getPlayerById(parseInt(req.params.id));
+  if(!aux) return res.json({ok:false})
   console.log(aux);
-  res.json(aux);
+  res.json({
+    ok: true,
+    data: aux
+  });
 });
 
 router.get('/remove/:id', async (req, res) => {
   DB.removePlayer(parseInt(req.params.id));
   res.json({ok: true});
+})
+
+router.get('/edit/:id', async (req, res) => {
+  const player = await DB.getPlayerById(parseInt(req.params.id));
+  res.render('players/Edit', {player});
 })
 
 router.put('/edit', async (req, res) => {

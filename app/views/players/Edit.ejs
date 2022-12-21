@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Are Ya</title>
+
+    <link rel="stylesheet" href="/stylesheets/players/edit.css">
+    <script src="/js/players/edit.js"></script>
+</head>
+<body>
+    <form action="/api/players/" method="get" class="main">
+        <div class="imgContainer">
+            <img src="/players/<%= player.id %>.png" alt="<%= player.name %>">
+        </div>
+        <div class="flex">
+            <Label>ID</Label>
+            <input class="block" type="text" name="id" id="id" value="<%= player.id %>" readonly>
+        </div>
+        <div class="flex">
+            <Label>Nombre</Label>
+            <input type="text" name="name" id="name" value="<%= player.name %>">
+        </div>
+        <div class="flex">
+            <Label>Fecha de nacimiento</Label>
+            <input type="text" name="birth" id="birth" value="<%= player.birthdate %>">
+        </div>
+        <div class="flex">
+            <Label>Nacionalidad</Label>
+            <input type="text" name="nation" id="nation" value="<%= player.nationality %>">
+        </div>
+        <div class="flex">
+            <Label>Grupo</Label>
+            <input type="text" name="team" id="team" value="<%= player.teamId %>">
+        </div>
+        <div class="flex">
+            <Label>Posicion</Label>
+            <input type="text" name="position" id="position" value="<%= player.position %>">
+        </div>
+        <div class="flex">
+            <Label>Número</Label>
+            <input type="text" name="number" id="number" value="<%= player.number %>">
+        </div>
+    
+        <div class="optionBtns">
+            <input class="saveBtn" type="submit" value="Guardar" id="submitBtn">
+            <a class="cancelBtn" href="/api/players">Cancelar</a>
+        </div>
+    </form>
+</body>
+</html>

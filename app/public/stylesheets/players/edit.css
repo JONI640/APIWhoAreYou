@@ -1,0 +1,80 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 35%;
+    margin-top: 3rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-bottom: .5rem;
+}
+
+.imgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(215, 215, 215);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+img {
+    padding-top: .5rem;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+    border-bottom: 1px solid black;
+}
+.block {
+    background-color: rgb(250, 155, 131);
+    border: 1px solid black;
+    text-align: center;
+}
+
+input[type="text"] {
+    padding: .2rem .5rem;
+}
+
+.optionBtns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem;
+}
+
+.saveBtn {
+    width: 100%;
+    padding: .2rem .5rem;
+    color: black;
+    border: 2px solid rgb(54, 216, 54);
+    background-color: rgb(54, 216, 54);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.cancelBtn {
+    width: 94%;
+    text-decoration: none;
+    padding: .2rem .5rem;
+    border: 2px solid rgb(253, 82, 52);
+    color: rgb(253, 82, 52);
+    border-radius: 2px;
+    text-align: center;
+    
+}
