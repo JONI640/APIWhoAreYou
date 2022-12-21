@@ -17,12 +17,12 @@ router.get('/add', (req, res) => {
 
 router.post('/add',
   [check('name').not().isEmpty().withMessage('Se requiere un nombre'),
-  check('id').not().isEmpty().withMessage('Introducce un id'),
-  check('birth').not().isEmpty().withMessage('Introducce una fecha de nacimiento'),
-  check('nation').not().isEmpty().withMessage('Introducce a que pais pertenece'),
-  check('team').not().isEmpty().withMessage('Introducce a que equipo pertenece'),
-  check('position').not().isEmpty().withMessage('Introducce en que posición juega'),
-  check('number').not().isEmpty().withMessage('Introducce el número del jugador')],
+  check('id').not().isEmpty().withMessage('Introduce un id'),
+  check('birth').not().isEmpty().withMessage('Introduce una fecha de nacimiento'),
+  check('nation').not().isEmpty().withMessage('Introduce a que pais pertenece'),
+  check('team').not().isEmpty().withMessage('Introduce a que equipo pertenece'),
+  check('position').not().isEmpty().withMessage('Introduce en que posición juega'),
+  check('number').not().isEmpty().withMessage('Introduce el número del jugador')],
   (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) res.render('add_error', { title: 'Error', mensaje: errors.errors[0].msg })

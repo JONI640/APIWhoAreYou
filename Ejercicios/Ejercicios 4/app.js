@@ -30,7 +30,7 @@ async function main(data) {
                 console.log(result);
             }
         });
-        await new Promise(resolve => setTimeout(resolve, 60000 / 10)); // Espera 6 segundos (60000 milisegundos)
+        await new Promise(resolve => setTimeout(resolve, 6000)); // Espera 6 segundos (60000 milisegundos)
     }
     // Cierra la conexión a la base de datos
     db.close();
