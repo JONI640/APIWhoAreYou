@@ -175,23 +175,5 @@ const getDataFromFile = (file) => {
     }
 }
 
-// init();
+init();
 
-const pruebaAPI = () => {
-    const key = '010d05e74f3f5bfa0f42de9333e1121e';
-
-    fetch("https://v3.football.api-sports.io/leagues", {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "v3.football.api-sports.io",
-            "x-rapidapi-key": key
-        }
-    })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(err => {
-            console.log(err);
-        });
-}
-
-pruebaAPI();
