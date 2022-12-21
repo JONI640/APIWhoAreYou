@@ -15,16 +15,13 @@ router.get('/add', (req, res) => {
 })
 
 router.post('/add',
-    [check('name').not().isEmpty().withMessage('Se requiere un nombre')],
-    function(req,res){
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(422).json({ errors: errors.array() });
-      }
-      else {
-        console.log(req.body)
-        res.render('add')
-      }
+  [check('name').not().isEmpty().withMessage('Se requiere un nombre')],
+  (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
+    
+    console.log(req.body)
+    res.render('add')
 })
 
 module.exports = router;
